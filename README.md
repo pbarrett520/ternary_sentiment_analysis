@@ -1,10 +1,10 @@
-## Misadventures with Neural Networks and Settling on Naive-Bayes
+# Misadventures with Neural Networks and Settling on Naive-Bayes
 
-# Task
+## Task
 
 The task is to take a heterogenous data set, a mixture of documents which are movie reviews and some which are not, and implepent a system of ternary classificiation. Non-reviews recieve the tag 0, postive movie reviews recieve the tag 1, and negative 2. So really, there are two different classification tasks going on here. The first is to discriminate between reviews and non-reviews. The second is to tell apart positive and negative reviews. And of course, the model should have a high F1 and accuracy score, while still generalizing well.
 
-# The Approach That Didn't Work
+## The Approach That Didn't Work
 
 ```python3
 def distilbert_sent(text):
@@ -66,7 +66,7 @@ def distilbert_sent2(text):
 ```
 I won't bother to show the whole notebook containing this spiral into insanity, as it didn't work and was ultimately a waste of my time. But basically, the idea was to use a binary classifier, run it on the data set, take the confidence values it returns, and either use the average of the confidence values as a threshold to identify a neutral text, or use use a minimum and maximum threshold to classify a "neutral" text. A fatal flaw in this approach is my false belief that there were neutral movie reviews in the data set, which was not the case. That's what I get for reading the directions once a month ago then never looking again. Despite this method not working, I felt compelled to mention it, since I spent most of my time one it, fruitlessly.
 
-# The Approach That *Did* Work
+## The Approach That *Did* Work
 
 Pressed for time, what I wound up doing was creating a good 'ol Naive Bayes model, as I was worried I wouldn't have time to finetune a regression based model. There is really nothing special about the model itself, just the vanilla NB model from Sci-Kit Learn's API. The part of the approach that does involve a good deal of iteration on my part is the data preprocessing, so I will discuss that in more depth.
 
@@ -104,7 +104,7 @@ x_train, x_valid, y_train, y_valid= train_test_split(df['TEXT'].astype(str), df[
 
 I experimented with setting 0.2 as the test size, but it hurt performance. After this, it was simply a matter of passing the data into the preprocessing pipeline, and then the NB model itself.
 
-# Results
+## Results
 
 Since I didn't know which parameter (weighted, macro, or micro) was optimal to use when running the Scikit-Learn metrics for this task, I'm showing all 3, in addition to the "meta" versions of the F1 and precison scores, which just means I averaged all 3 versions of the scores together, because why not?
 
