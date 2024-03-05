@@ -145,7 +145,7 @@ Accuracy Meta: 0.9127986348122867
 The model returns roughly 91% percent in all 3 metrics, which isn't bad considering how simple my approach is. Also, it only takes about 4 minutes to train this model on an M1 MacBook Air, so speed is not an issue here.
 
 ```python3
-0      1      2
+    0      1      2
 0[7732,  212,  184]
 1[ 190, 4075,  538]
 2[  53,  356, 4240]
